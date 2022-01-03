@@ -1,5 +1,7 @@
 package com.example.bankingassignment.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,12 +13,25 @@ public class Account {
     private long accountId;
     private double balance;
 
+    @JsonBackReference
+    @OneToOne(fetch = FetchType.EAGER)
+    private User accountOwner;
+
+
     public Account() {
     }
 
     public Account(long accountId, double balance) {
         this.accountId = accountId;
         this.balance = balance;
+    }
+
+    public User getAccountOwner() {
+        return accountOwner;
+    }
+
+    public void setAccountOwner(User accountOwner) {
+        this.accountOwner = accountOwner;
     }
 
     public long getAccountId() {

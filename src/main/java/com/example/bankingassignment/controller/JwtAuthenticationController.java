@@ -62,8 +62,10 @@ public class JwtAuthenticationController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> saveUser(@RequestBody UserDto userDto) throws Exception {
+        User user = myUserDetailsService.saveUser(new User(userDto.getFirstname(), userDto.getLastname(), userDto.getEmailId(), userDto.getUsername(), bcryptEncoder.encode(userDto.getPassword())));
         Account account = accountService.createAccount(new Account());
-        User user = myUserDetailsService.saveUser(new User(userDto.getFirstname(), userDto.getLastname(), userDto.getEmailId(), userDto.getUsername(), bcryptEncoder.encode(userDto.getPassword()), account));
+        user.setAccount(account);
+        account.setAccountOwner(user);
         return ResponseEntity.ok(myUserDetailsService.saveUser(user));
     }
 }

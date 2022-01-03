@@ -2,6 +2,7 @@ package com.example.bankingassignment.models;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 
@@ -24,16 +25,25 @@ public class User {
     @JsonIgnore
     private String password;
 
+    @JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL)
     private Account account;
 
-    public User(String firstname, String lastname,String emailId, String username, String password, Account account) {
+//    public User(String firstname, String lastname,String emailId, String username, String password, Account account) {
+//        this.firstname = firstname;
+//        this.lastname = lastname;
+//        this.emailId = emailId;
+//        this.username = username;
+//        this.password = password;
+//        this.account = account;
+//    }
+
+    public User(String firstname, String lastname, String emailId, String username, String password) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.emailId = emailId;
         this.username = username;
         this.password = password;
-        this.account = account;
     }
 
     public User() {

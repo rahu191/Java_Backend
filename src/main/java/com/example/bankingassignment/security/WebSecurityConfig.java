@@ -27,6 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {

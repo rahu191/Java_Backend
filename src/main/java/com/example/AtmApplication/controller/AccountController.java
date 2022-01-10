@@ -9,12 +9,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/users")
 public class AccountController {
 
     @Autowired
     private AtmUserService atmUserService;
 
-    @PutMapping("/users/deposit/{Account_id}")
+    @PutMapping("/deposit/{Account_id}")
     public ResponseEntity<AtmAccount> depositBalance(@PathVariable Long Account_id, @RequestBody Account_idToAmount form) {
         AtmAccount atmAccount = atmUserService.findById(Account_id);
         atmAccount.setBalance(atmAccount.getBalance() + form.getAmount());
@@ -23,13 +24,13 @@ public class AccountController {
         return ResponseEntity.ok().body(atmUserService.findById(Account_id));
     }
 
-    @GetMapping("/users/view")
+    @GetMapping("/view")
     public ResponseEntity<AtmAccount> viewBalance(@RequestBody Long account_id) {
 
         return ResponseEntity.ok().body(atmUserService.findById(account_id));
     }
 
-    @PutMapping("/users/withdraw/{Account_id}")
+    @PutMapping("/withdraw/{Account_id}")
     public ResponseEntity<String> withdrawBalance(@PathVariable Long Account_id, @RequestBody Account_idToAmount form) {
         AtmAccount atmAccount = atmUserService.findById(Account_id);
             if( atmAccount.getBalance() - form.getAmount() > 2000) {

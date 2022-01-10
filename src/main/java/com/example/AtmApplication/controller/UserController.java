@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
@@ -49,37 +50,37 @@ public class UserController {
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
 
-    @PostMapping("/users/saveUser")
+    @PostMapping("/saveUser")
     public ResponseEntity<AtmUser> saveAtmUser(@RequestBody AtmUser atmUser) {
 
         return ResponseEntity.ok().body(atmUserService.saveAtmUser(atmUser));
     }
 
-    @GetMapping("/users")
+    @GetMapping("/")
     public ResponseEntity<List<AtmUser>> getAtmUsers() {
 
         return ResponseEntity.ok().body(atmUserService.getAtmUsers());
     }
 
-    @GetMapping("/users/{username}")
+    @GetMapping("/{username}")
     public ResponseEntity<AtmUser> getAtmUser(@PathVariable String username ) {
 
         return ResponseEntity.ok().body(atmUserService.getAtmUser(username));
     }
 
-    @GetMapping("users/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<AtmAccount> findById(@PathVariable Long id) {
 
       return ResponseEntity.ok().body(atmUserService.findById( id));
     }
 
-    @PostMapping("/users/newAccount")
+    @PostMapping("/newAccount")
     public ResponseEntity<AtmAccount> saveAtmAccount() {
 
         return ResponseEntity.ok().body(atmUserService.saveAtmAccount(new AtmAccount()));
     }
 
-    @PostMapping("/users/addAccount")
+    @PostMapping("/addAccount")
     public ResponseEntity<AtmAccount> addAtmAccountToAtmUser(@RequestBody AccountToUser accountToUser) {
 
         return ResponseEntity.ok().body(atmUserService.addAtmAccountToAtmUser(accountToUser.getUsername()));

@@ -1,0 +1,15 @@
+type Manufacturer {
+	id: ID!
+	mName: String!
+	vin: Int
+	dealers: [Dealer]
+}
+
+extend type Query {
+	findAllManufacturers: [Manufacturer]!
+	countManufacturers: Long!
+}
+
+extend type Mutation {
+    createManufacturer(mName: String!, vin: Int): Manufacturer!
+}

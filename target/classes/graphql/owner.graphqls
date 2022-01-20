@@ -1,0 +1,17 @@
+type Owner {
+	id: ID!
+	name: String!
+	age: Int
+	cars: [Car]
+}
+
+# Root
+type Query {
+	findAllOwners: [Owner]!
+	countOwners: Long!
+}
+
+# Root
+type Mutation {
+	createOwner(name: String!, age: Int): Owner!
+}

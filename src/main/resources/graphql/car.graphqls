@@ -1,0 +1,23 @@
+type Car {
+	id: ID!
+	carName: String!
+	description: String
+	owner: Owner
+}
+
+extend type Query {
+	findAllCars: [Car]!
+	countCars: Long!
+}
+
+extend type Mutation {
+
+	createCar(carName: String!, description: String, owner: ID!): Car!
+	updateCar(id: ID!, carName: String, description: String): Car!
+	deleteCar(id: ID!): Boolean
+}
+
+schema {
+  query: Query,
+  mutation: Mutation
+}

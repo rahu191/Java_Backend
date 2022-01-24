@@ -1,0 +1,28 @@
+type Mutation {
+	createOwner(name: String!, age: Int): Owner!
+	updateOwner(id: ID!, name: String, age: Long): Owner!
+	deleteOwner(id: ID!): Boolean
+
+	createCar(carName: String!, description: String, owner: ID!): Car!
+    updateCar(id: ID!, carName: String, description: String): Car!
+    deleteCar(id: ID!): Boolean
+
+    createManufacturer(mName: String!, vin: Int): Manufacturer!
+    updateManufacturer(id: ID!, mName: String, vin: Int): Manufacturer!
+    deleteManufacturer(id: ID!): Boolean
+
+    createDealer(input: DealerWrapper): Dealer!
+    updateDealer(id: ID!, dName: String, email: String): Dealer!
+    deleteDealer(id: ID!): Boolean
+}
+
+input DealerWrapper{
+dName: String!
+email: String
+manufacturer: Manufacture!
+}
+
+input Manufacture {
+    mName: String
+    vin: Int
+}

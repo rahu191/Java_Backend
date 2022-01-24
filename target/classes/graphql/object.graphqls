@@ -1,0 +1,32 @@
+type Car {
+	id: ID!
+	carName: String!
+	description: String
+	owner: Owner
+}
+
+type Owner {
+	id: ID!
+	name: String!
+	age: Int
+	cars: [Car]
+}
+
+type Dealer {
+	id: ID!
+	dName: String!
+	email: String
+	manufacturer: Manufacturer
+}
+
+type Manufacturer {
+	id: ID!
+	mName: String!
+	vin: Int
+	dealers: [Dealer]
+}
+
+schema {
+  query: Query,
+  mutation: Mutation
+}

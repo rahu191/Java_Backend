@@ -1,0 +1,17 @@
+type Query {
+    findByOwnerId( id:Long): Owner!
+	findAllOwners: [Owner]!
+	countOwners: Long!
+
+	findByManufacturerId( id:Long): Manufacturer!
+    findAllManufacturers: [Manufacturer]!
+    countManufacturers: Long!
+
+    findByCarId( id:Long): Car!
+    findAllCars: [Car]!
+    countCars: Long!
+
+    findByDealerId( id:Long): Dealer!
+    findAllDealers: [Dealer]!
+    countDealers: Long!
+}

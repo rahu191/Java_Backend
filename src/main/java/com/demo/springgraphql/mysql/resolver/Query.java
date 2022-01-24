@@ -52,4 +52,12 @@ public class Query implements GraphQLQueryResolver {
 
 	public long countDealers() { return dealerRepository.count(); }
 
+	public Dealer findByDealerId(long id) { return dealerRepository.findById(id).get(); }
+
+	public Owner findByOwnerId(long id) { return ownerRepository.findById(id).get(); }
+
+	public Car findByCarId(long id) { return carRepository.findById(id).get(); }
+
+	public Manufacturer findByManufacturerId(long id) { return manufacturerRepository.findById(id).get(); }
+
 }
